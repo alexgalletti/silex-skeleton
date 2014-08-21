@@ -1,0 +1,20 @@
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews
+    </IfModule>
+
+    RewriteEngine On
+
+    # Redirect Trailing Slashes...
+    RewriteRule ^(.*)/$ /$1 [L,R=301]
+
+    # Disable Front Controller for assets dir...
+    RewriteRule ^assets($|/) - [L]
+
+    # Handle Front Controller...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+</IfModule>
+
+RedirectMatch 404 /(\.git|\.idea|\.gitignore|.editorconfig|\.htaccess|_ide_helper\.php|artisan|app/.*|.+\.sublime-.*|composer\.(phar|lock|json)|Gruntfile\.js|package\.json|readme\.m.*|server\.php|\.laravel_env)

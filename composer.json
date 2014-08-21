@@ -1,0 +1,16 @@
+{
+    "require": {
+        "silex/silex": "~1.1",
+        "symfony/translation": "~2.3",
+        "twig/twig": ">=1.8,<2.0-dev",
+        "monolog/monolog": ">=1.0.0"
+    },
+    "autoload": {
+        "files": [
+            "app/helpers.php"
+        ],
+        "classmap": [
+            "app/classes/"
+        ]
+    }
+}
