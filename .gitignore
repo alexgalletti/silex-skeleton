@@ -2,6 +2,7 @@
 /vendor
 .env.local.php
 .env.php
+!composer.lock
 composer.phar
 error_log
 *.sublime-workspace
@@ -13,5 +14,6 @@ _ide_helper.php
 .sublime-grunt.cache
 .laravel_env
 /SOURCE
-.psd
+*.psd
 sftp-config.json
+debug.log
