@@ -1,9 +1,11 @@
 {
     "require": {
         "silex/silex": "~1.1",
-        "symfony/translation": "~2.3",
+        "symfony/translation": "2.5.2",
+        "symfony/validator": "2.5.2",
         "twig/twig": ">=1.8,<2.0-dev",
-        "monolog/monolog": ">=1.0.0"
+        "monolog/monolog": ">=1.0.0",
+        "intervention/image": "1.*"
     },
     "autoload": {
         "files": [
