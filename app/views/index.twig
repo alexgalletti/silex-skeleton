@@ -1,9 +1,9 @@
 {% extends 'layout.twig' %}
 
-{% set title = 'Hello World!' %}
+{% set title = 'Hello ' ~ name ~ '!' %}
 
 {% block body %}
 
-    Hello World!
+    Hello {{ name }}!
 
 {% endblock %}
