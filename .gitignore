@@ -14,5 +14,5 @@ _ide_helper.php
 /SOURCE
 *.psd
 sftp-config.json
-debug.log
+app/storage/debug.log
 .DS_Store
