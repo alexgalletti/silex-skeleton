@@ -11,7 +11,17 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
-$app = new Application(require_once(__DIR__.'/config.php'));
+$app = new Application(require(__DIR__.'/config.php'));
+
+$app->register(new SessionServiceProvider());
+$app->register(new ValidatorServiceProvider());
+$app->register(new SwiftmailerServiceProvider());
+$app->register(new TwigServiceProvider(), [
+    'twig.path' => __DIR__.'/views'
+]);
+$app->register(new MonologServiceProvider(), [
+    'monolog.logfile' => __DIR__.'/storage/debug.log'
+]);
 
 $app->error(function (\Exception $e, $code) use($app) {
     if ($app['request']->isXmlHttpRequest() || strpos($app['request']->headers->get('Content-Type'), 'application/json') === 0) {
@@ -21,16 +31,6 @@ $app->error(function (\Exception $e, $code) use($app) {
     return null;
 });
 
-$app->register(new SessionServiceProvider());
-$app->register(new ValidatorServiceProvider());
-$app->register(new TwigServiceProvider(), [
-    'twig.path' => __DIR__.'/views'
-]);
-$app->register(new MonologServiceProvider(), [
-    'monolog.logfile' => __DIR__.'/storage/debug.log'
-]);
-$app->register(new SwiftmailerServiceProvider());
-
 $app->before(function (Request $request) {
     if (0 === strpos($request->headers->get('Content-Type'), 'application/json')) {
         $data = json_decode($request->getContent(), true);
@@ -38,6 +38,6 @@ $app->before(function (Request $request) {
     }
 });
 
-require_once __DIR__.'/routes.php';
+require(__DIR__.'/routes.php');
 
 return $app;

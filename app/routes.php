@@ -15,10 +15,10 @@ $app->match('/swiftmailer', function (Application $app) {
         ->setBody('Some feedback...');
 
     if ($app['mailer']->send($message)) {
-        return $app->json(['sent' => 1]);
+        return $app->json(['sent' => true]);
     }
 
-    return $app->abort(500, 'There was an error sending the email');
+    $app->abort(500, 'There was an error sending the email');
 });
 
 /**
@@ -68,7 +68,7 @@ $app->get('/login', function () use ($app) {
     }
 
     $response = new Response();
-    $response->headers->set('WWW-Authenticate', sprintf('Basic realm="%s"', 'site_login'));
+    $response->headers->set('WWW-Authenticate', sprintf('Basic realm="%s"', 'Protected Area'));
     $response->setStatusCode(401, 'Please sign in.');
     return $response;
 });
@@ -78,7 +78,7 @@ $app->get('/account', function () use ($app) {
         return $app->redirect('login');
     }
 
-    return "Welcome {$user['username']}!";
+    return sprintf('Welcome %s!', $user['username']);
 });
 
 /**

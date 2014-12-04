@@ -10,12 +10,12 @@ $app = new Application('Skeleton', 'n/a');
 
 $app->getDefinition()->addOption(new InputOption('--env', '-e', InputOption::VALUE_REQUIRED, 'The Environment name.', 'dev'));
 
-$app->register('my-command')->setDefinition([
-        // new InputOption('some-option', null, InputOption::VALUE_NONE, 'Some help'),
+$app->register('hello')->setDefinition([
+        new InputArgument('name', InputArgument::OPTIONAL, 'Your name.', 'World'),
     ])
-    ->setDescription('My command description')
+    ->setDescription('Say hello!')
     ->setCode(function (InputInterface $input, OutputInterface $output) use ($app) {
-        // do something
+        $output->writeln(sprintf('Hello <info>%s</info>!', $input->getArgument('name')));
     });
 
 return $app;

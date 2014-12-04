@@ -3,18 +3,19 @@
 return [
     'debug' => true,
 
-    // 'mysql.options' => array(
+    // 'mysql.options' => [
     //     'user' => 'root',
     //     'pass' => '',
     //     'db'   => 'database'
-    // )
-
-    // 'swiftmailer.options' => [
-    //     'host' => 'host',
-    //     'port' => '25',
-    //     'username' => 'username',
-    //     'password' => 'password',
-    //     'encryption' => null,
-    //     'auth_mode' => null
     // ]
+
+    'swiftmailer.options' => [
+        'disable_delivery' => getenv('env') ?: 'dev',
+        // 'host' => 'host',
+        // 'port' => '25',
+        // 'username' => 'username',
+        // 'password' => 'password',
+        // 'encryption' => null,
+        // 'auth_mode' => null
+    ]
 ];
