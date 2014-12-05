@@ -24,7 +24,7 @@ $app->register(new MonologServiceProvider(), [
 ]);
 
 $app->error(function (\Exception $e, $code) use($app) {
-    if ($app['request']->isXmlHttpRequest() || strpos($app['request']->headers->get('Content-Type'), 'application/json') === 0) {
+    if ($app['request']->isXmlHttpRequest() || strpos($app['request']->headers->get('Accept'), 'application/json') === 0) {
         return $app->json(['error' => $e->getMessage()], $code);
     }
 
@@ -32,7 +32,7 @@ $app->error(function (\Exception $e, $code) use($app) {
 });
 
 $app->before(function (Request $request) {
-    if (0 === strpos($request->headers->get('Content-Type'), 'application/json')) {
+    if (strpos($request->headers->get('Accept'), 'application/json') === 0) {
         $data = json_decode($request->getContent(), true);
         $request->request->replace(is_array($data) ? $data : array());
     }
