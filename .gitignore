@@ -6,7 +6,7 @@
 *.sublime-workspace
 *.psd
 app/storage/debug.log
-.env.local.php
+.env.*.php
 .env.php
 !composer.lock
 composer.phar
