@@ -5,7 +5,6 @@ node_modules
 *.sublime-*
 .sublime-grunt-cache
 *.psd
-app/storage/debug.log
 .env.*
 !composer.lock
 composer.phar
