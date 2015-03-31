@@ -6,6 +6,7 @@ node_modules
 .sublime-grunt-cache
 *.psd
 .env*
+!.env.example
 !composer.lock
 composer.phar
 error_log

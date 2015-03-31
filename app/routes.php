@@ -5,11 +5,17 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
+ * All these routes are for example purposes only,
+ * it is recommended that you remove them when developing
+ * your own application
+ */
+
+/**
  * Example of using Swiftmailer
  */
 $app->match('/swiftmailer', function (Application $app) {
     $message = \Swift_Message::newInstance()
-        ->setSubject('[YourSite] Feedback')
+        ->setSubject(sprintf('[%s] Feedback', $app['name']))
         ->setFrom(['noreply@yoursite.com'])
         ->setTo(['feedback@yoursite.com'])
         ->setBody('Some feedback...');
@@ -49,7 +55,7 @@ $app->match('/validate', function (Application $app) {
     $messages = [];
 
     foreach ($errors as $error) {
-        $messages[] = $error->getPropertyPath().' '.$error->getMessage();
+        $messages[] = $error->getPropertyPath() . ' ' . $error->getMessage();
     }
 
     return $app->json($messages);
